@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_fish_species"
+        android:title="Giống loài cá cảnh" />
+    <item
+        android:id="@+id/nav_equipment"
+        android:title="Dụng cụ nuôi cá" />
+    <item
+        android:id="@+id/nav_food"
+        android:title="Thức ăn cho cá" />
+    <item
+        android:id="@+id/nav_follow"
+        android:title="Theo dõi"
+        android:src="@drawable/ic_eyes"/>
+    <item
+        android:id="@+id/nav_saved_posts"
+        android:title="Bài viết đã lưu" />
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Cài đặt" />
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Đăng xuất" />
+</menu>

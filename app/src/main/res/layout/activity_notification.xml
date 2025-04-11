@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".NotificationActivity">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:id="@+id/tvThongbao"
+        android:text="Thông Báo"
+        android:padding="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNotification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light"
+            tools:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvNoNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Bạn chưa có thông báo nào"
+            android:textSize="16sp"
+            android:textColor="#888888"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:padding="20dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <ImageView
+            android:onClick="openHomeActivity"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:contentDescription="Home" />
+
+        <ImageView
+            android:onClick="openCartActivity"
+            android:id="@+id/shopping"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_shopping"
+            android:contentDescription="Shopping" />
+
+        <ImageView
+            android:onClick="openPostFishActivity"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_menu_add"
+            android:contentDescription="Add Post" />
+
+        <ImageView
+            android:onClick="openMessagesActivity"
+            android:id="@+id/btnMessage"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_message"
+            android:contentDescription="Messages" />
+
+        <ImageView
+            android:id="@+id/imgThongbao"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_cation" />
+    </LinearLayout>
+</LinearLayout>

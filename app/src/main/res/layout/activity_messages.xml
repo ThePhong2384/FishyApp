@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MessagesActivity"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="30dp"
+        android:layout_height="19dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Tiêu đề tin nhắn -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tin nhắn"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"/>
+
+    <!-- Thanh tìm kiếm -->
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:drawable/edit_text"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:drawablePadding="8dp"
+        android:hint="Tìm kiếm tin nhắn..."
+        android:padding="10dp" />
+
+    <!-- Danh sách tin nhắn -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:contentDescription="list"
+        android:id="@+id/rvMessages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:scrollbars="vertical"/>
+</LinearLayout>

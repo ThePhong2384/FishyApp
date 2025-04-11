@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng Bài"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#2196F3"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_avatar" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp">
+
+                    <TextView
+                        android:id="@+id/usernameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tên người đăng"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/timeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thời gian"
+                        android:textSize="14sp"
+                        android:textColor="#333333" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_fish5"
+                android:layout_marginBottom="15dp"/>
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mô tả thông tin bài viết..."
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_edt"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giống cá"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"/>
+
+                <Spinner
+                    android:id="@+id/spinnerFishBreed"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/rounded_spn"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giá bán"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="12dp"/>
+
+            <EditText
+                android:id="@+id/edtPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập giá bán..."
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_edt"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/btnPost"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Đăng bài"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2196F3"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Thanh Menu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:padding="12dp"
+        android:gravity="center">
+
+        <ImageView
+            android:contentDescription="Trang chủ"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:onClick="openHomeActivity"
+            android:padding="4dp"/>
+
+        <ImageView
+            android:contentDescription="Giỏ hàng"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_shopping"
+            android:onClick="openCartActivity"
+            android:padding="4dp"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_menu_add"
+            android:padding="4dp"/>
+
+        <ImageView
+            android:contentDescription="Tin nhắn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_message"
+            android:onClick="openMessagesActivity"
+            android:padding="4dp"/>
+
+        <ImageView
+            android:contentDescription="Thông báo"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_cation"
+            android:onClick="openNotificationActivity"
+            android:padding="4dp"/>
+    </LinearLayout>
+</LinearLayout>
