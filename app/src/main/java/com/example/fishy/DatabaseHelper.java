@@ -15,7 +15,7 @@ import java.util.Locale;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "fishy.db";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     // USERS TABLE
     private static final String TABLE_USERS = "users";
@@ -227,27 +227,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_MSG_RECEIVER, receiver);
         db.insert(TABLE_MESSAGES, null, values);
 
-        // Cập nhật bảng conversations
-        updateConversation(receiver, content, time, avatar);
+        updateConversation(receiver, content, time);
         db.close();
     }
 
-    private void updateConversation(String username, String lastMessage, String time, int avatar) {
+    private void updateConversation(String username, String lastMessage, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_CONV_LAST_MESSAGE, lastMessage);
         values.put(COLUMN_CONV_TIME, time);
-        values.put(COLUMN_CONV_AVATAR, avatar);
 
-        // Kiểm tra xem username đã tồn tại trong bảng conversations chưa
         Cursor cursor = db.query(TABLE_CONVERSATIONS, new String[]{COLUMN_CONV_USERNAME},
                 COLUMN_CONV_USERNAME + "=?", new String[]{username}, null, null, null);
         if (cursor != null && cursor.getCount() > 0) {
-            // Cập nhật nếu đã tồn tại
             db.update(TABLE_CONVERSATIONS, values, COLUMN_CONV_USERNAME + "=?", new String[]{username});
         } else {
-            // Thêm mới nếu chưa tồn tại
             values.put(COLUMN_CONV_USERNAME, username);
+            values.put(COLUMN_CONV_AVATAR, R.drawable.ic_user_avatar);
             db.insert(TABLE_CONVERSATIONS, null, values);
         }
         if (cursor != null) {
@@ -258,8 +254,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Message> getMessagesForUser(String username) {
         List<Message> messages = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_MESSAGES +
+                        " WHERE " + COLUMN_MSG_RECEIVER + "=? OR " + COLUMN_MSG_SENDER + "=? ORDER BY " + COLUMN_MSG_ID + " ASC",
+                new String[]{username, username});
+
+        if (!cursor.moveToFirst()) {
+            Cursor convCursor = db.query(TABLE_CONVERSATIONS, null,
+                    COLUMN_CONV_USERNAME + "=?", new String[]{username}, null, null, null);
+            if (convCursor != null && convCursor.moveToFirst()) {
+                String lastMessage = convCursor.getString(convCursor.getColumnIndexOrThrow(COLUMN_CONV_LAST_MESSAGE));
+                String time = convCursor.getString(convCursor.getColumnIndexOrThrow(COLUMN_CONV_TIME));
+                int avatar = convCursor.getInt(convCursor.getColumnIndexOrThrow(COLUMN_CONV_AVATAR));
+
+                ContentValues values = new ContentValues();
+                values.put(COLUMN_MSG_SENDER, username);
+                values.put(COLUMN_MSG_CONTENT, lastMessage);
+                values.put(COLUMN_MSG_TIME, time);
+                values.put(COLUMN_MSG_AVATAR, avatar);
+                values.put(COLUMN_MSG_IS_SENT_BY_ME, 0);
+                values.put(COLUMN_MSG_RECEIVER, username);
+                db.insert(TABLE_MESSAGES, null, values);
+            }
+            if (convCursor != null) {
+                convCursor.close();
+            }
+        }
+
+        cursor = db.rawQuery("SELECT * FROM " + TABLE_MESSAGES +
                         " WHERE " + COLUMN_MSG_RECEIVER + "=? OR " + COLUMN_MSG_SENDER + "=? ORDER BY " + COLUMN_MSG_ID + " ASC",
                 new String[]{username, username});
 
